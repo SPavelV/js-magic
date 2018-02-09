@@ -36,28 +36,20 @@ window.renderStatistics = function (ctx, names, times) {
   var initialX = 150;
   var initialY = 250;
   var lineHeight = 15;
+  var colorBarI = 'rgba(255, 0, 0, 1)';
+  var colorText = 'rgb(0, 0, 0)';
 
   for (var i = 0; i < times.length; i++) {
-    ctx.fillRect(initialX + indent * i, initialY, barWidth, times[i] * -step);
+    ctx.fillStyle = colorText;
     ctx.fillText(names[i], initialX + indent * i, initialY + lineHeight);
     ctx.fillText(times[i].toFixed(), initialX + indent * i, initialY - lineHeight - times[i] * step);
+
+    if (names[i] === 'Вы') {
+      ctx.fillStyle = colorBarI;
+    } else {
+      ctx.fillStyle = 'rgba(25, 45, 251,' + Math.random() + ')';
+    }
+    ctx.fillRect(initialX + indent * i, initialY, barWidth, times[i] * -step);
   }
-  //
-  //
-  // var histogramWidth = 150;
-  // var step = histogramWidth / (max - 0);
-  //
-  // ctx.fillText('Худшее время: ' + max.toFixed(2) + 'mc y игрока ' + names[maxIndex], 120, 90);
-  //
-  // var barHeight = 20;
-  // var indent = 40;
-  // var initialX = 120;
-  // var initialY = 110;
-  // var lineHeight = 15;
-  //
-  // for (var i = 0; i < times.length; i++) {
-  //   ctx.fillRect(initialX, initialY + indent * i, times[i] * step, barHeight);
-  //   ctx.fillText(names[i], initialX + histogramWidth, initialY + lineHeight + indent * i);
-  // }
 
 };
